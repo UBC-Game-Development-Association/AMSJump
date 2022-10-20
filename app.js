@@ -6,12 +6,12 @@ var fs = require('fs');
 
 //Send the user the 'index.html' file, to let them interact
 app.get('/',function(req, res){
-	res.sendFile(__dirname + '/client/index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 
 //If its the mirror, send the mirror file.
 app.get('/mirror',function(req, res){
-	res.sendFile(__dirname + '/client/mirrorIndex.html');
+	res.sendFile(__dirname + '/mirrorIndex.html');
 });
 
 app.use('/client', express.static(__dirname + '/client'));
