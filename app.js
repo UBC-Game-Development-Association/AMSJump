@@ -24,6 +24,6 @@ console.log("Server started.");
 //A list to track all of the sockets
 var SOCKET_LIST = {};
 
-//Creating the io object (to help us talk with the sockets)
+//Creating the io object (to help us talk with the sockets) web sockets, fast connection 
 var io = require('socket.io')(serv,{});
 
