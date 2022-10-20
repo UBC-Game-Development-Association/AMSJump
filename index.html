@@ -1,5 +1,23 @@
 
 <!DOCTYPE html>
 <html>
-<p>Hello</p>
+<p id = 'testing' >Hello</p>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+	var testing = document.getElementById('testing');
+    var socket = io();
+	
+	socket.emit('test', {message:"Hello"});
+	
+	
+	socket.on('response', function(data){
+        
+        console.log("Got Response");
+        testing.style.display = 'none';
+    });
+</script>
 </html>
