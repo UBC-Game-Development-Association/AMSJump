@@ -1,14 +1,15 @@
 
 <!DOCTYPE html>
 <html>
+<body id = 'bod' >
 <p id = 'testing' >Hello</p>
-
-
+</body>
 
 <script src="/socket.io/socket.io.js"></script>
 
 <script>
 	var testing = document.getElementById('testing');
+	var bod = document.getElementById('bod');
     var socket = io();
 	
 	socket.emit('test', {message:"Hello"});
@@ -19,5 +20,27 @@
         console.log("Got Response");
         testing.style.display = 'none';
     });
+	
+	document.onmousedown = function(event){
+		if(event.clientX < (0.5 * bod.clientWidth)){
+			socket.emit('jumpStart',{direction: 'left'});
+			
+		}
+		else {
+			socket.emit('jumpStart',{direction: 'right'});
+			
+		}
+	}
+	document.onmouseup = function(event){
+		
+		if(event.clientX < (0.5 * bod.clientWidth)){
+			socket.emit('jumpStop',{direction: 'left'});
+			
+		}
+		else {
+			socket.emit('jumpStop',{direction: 'right'});
+			
+		}
+	}
 </script>
 </html>

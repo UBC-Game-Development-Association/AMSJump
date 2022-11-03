@@ -35,6 +35,8 @@ io.sockets.on('connection', function(socket){
 	socket.id = Math.random();
 	SOCKET_LIST[socket.id] = socket;
     
+	console.log("Connected");
+	
     //Determine what to do when it disconnects
     socket.on('disconnect', function(){
         
@@ -45,6 +47,14 @@ io.sockets.on('connection', function(socket){
        console.log(data.message);
 	   socket.emit('response', {});
     });
+	
+	socket.on('jumpStart', function(data){
+		console.log(data.direction);
+	});
+
+	socket.on('jumpStop', function(data){
+		console.log(data.direction);
+	});
     
 });
 
@@ -58,7 +68,7 @@ io.sockets.on('connection', function(socket){
         
 			var socket = SOCKET_LIST[i];
 		
-			socket.emit('response', {});
+			//socket.emit('response', {});
 		}
 	}, 1000/65);
 
