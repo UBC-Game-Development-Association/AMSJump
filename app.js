@@ -54,6 +54,13 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('jumpStop', function(data){
 		console.log(data.direction);
+		for(var i in SOCKET_LIST){
+		
+        
+			var sock = SOCKET_LIST[i];
+		
+			sock.emit('update', {data});
+		}
 	});
     
 });
