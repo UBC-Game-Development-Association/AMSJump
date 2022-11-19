@@ -13,24 +13,23 @@ var socket = io();
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-var xPos = 0;
-var yPos = 0;
 
 var img = new Image();
 img.src = "/client/Char.png";
 
 
 socket.on('update', function(data){
+		
 		ctx.fillStyle = 'white';
 		ctx.fillRect(0,0,1000,500);
-        if(data.data.direction == 'right'){
-			xPos = xPos + 50;
-		}
-		else{
-			xPos = xPos - 50;
+	
+		
+		for(i in data.players){
+		var player = data.players[i];
+			ctx.drawImage(img, player.x, 500-player.y - 100, 100, 100);
 		}
 		
-        ctx.drawImage(img, xPos, 0, 100, 100);
+   
     }); 
 
 setInterval(function(){
