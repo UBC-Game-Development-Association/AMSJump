@@ -23,6 +23,8 @@ app.use('/client', express.static(__dirname + '/client'));
 serv.listen(8012);
 console.log("Server started.");
 
+var que = new Queue();
+
 //A list to track all of the sockets
 var SOCKET_LIST = {};
 
@@ -39,10 +41,7 @@ io.sockets.on('connection', function(socket){
     
 	
 	Player.onConnect(socket);
-	var que = new Queue();
-	console.log(que.nextEntry);
-	
-	
+
 	
 	console.log("Connected");
 	
