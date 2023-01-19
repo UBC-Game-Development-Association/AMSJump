@@ -24,6 +24,11 @@ serv.listen(8012);
 console.log("Server started.");
 
 var que = new Queue();
+console.log(que.isEmpty);
+que.push(1);
+console.log(que.getSize);
+console.log(que.pop());
+console.log(que.getSize);
 
 //A list to track all of the sockets
 var SOCKET_LIST = {};

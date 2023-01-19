@@ -19,12 +19,14 @@ module.exports = class Queue{
 		return true;
 	}
 
+	//not working :(
+
 	pop() {
 		if(this.isEmpty){
 			return null;
 		}
 		const item = this.list[this.head];
-		delete this.list[this.head];
+		// delete this.list[this.head];
 		this.head++;
 		return item;
 	}
