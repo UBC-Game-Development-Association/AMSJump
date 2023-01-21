@@ -47,6 +47,7 @@ io.sockets.on('connection', function(socket){
 	
 	Player.onConnect(socket);
 
+	Board.obstList[1] = Obstacle({xPos:100, yPos:0, width:10, height:10});
 	
 	console.log("Connected");
 	
@@ -77,7 +78,13 @@ var Board = function(){
 * Returns a pack with game info.
 */
 Board.Update = function(){
+	var boardPack = [];
 	
+	for(var i in Board.obstList){
+		boardPack.push();
+	}
+	
+	return boardPack;
 }
 
 Board.obstList = {};
@@ -90,6 +97,9 @@ var Obstacle = function(data){
 		yPos: data.y,
 		width: data.width,
 		height: data.height,
+	}
+	self.getData = function(){
+		return {xPos:self.xPos, yPos:self.yPos, width:self.width, height:self.height};
 	}
 }
 
@@ -217,6 +227,7 @@ setInterval(function(){
 //We need to store the player data.
 	var pack = {
 		players: Player.Update(),
+		obstacles: Board.Update(),
 	};
 	
 	for(var i in SOCKET_LIST){
