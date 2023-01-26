@@ -9,7 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0"
-  }
+    "express": "^4.18.2",
+    "socket.io": "^2.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UBC-Game-Development-Association/AMSJump.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UBC-Game-Development-Association/AMSJump/issues"
+  },
+  "homepage": "https://github.com/UBC-Game-Development-Association/AMSJump#readme"
 }

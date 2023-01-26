@@ -153,7 +153,7 @@ var Player = function(id, username, start){
 
 		
 		if((self.readyL > 0) && (self.readyL < 8.5)){
-			self.readyL = self.readyL + (0.6/(self.readyL*2)); //the jump charge 
+			self.readyL = self.readyL + (0.6/(self.readyL*2));
 		}
 		if((self.readyR > 0) && (self.readyR < 8.5)){
 			self.readyR = self.readyR + (0.6/(self.readyR*2));
@@ -183,8 +183,7 @@ var Player = function(id, username, start){
 	}
 	
 	self.jumpIn = function(dir){
-		if(self.yPos == 0){ //only allows the player to jump if it is on the ground.
-							//will need to be updated, as it assumes that the ground will always be at position 0
+		if(self.yPos == 0){
 			if(dir == 'right'){
 				self.readyR = 1;
 			}else{
