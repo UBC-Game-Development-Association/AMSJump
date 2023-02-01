@@ -4,6 +4,7 @@ var app = express();
 var serv = require('http').Server(app);
 var fs = require('fs');
 
+var Player = require('./player.js');
 var Queue = require('./queue.js');
 
 //Send the user the 'index.html' file, to let them interact
@@ -123,72 +124,7 @@ Board.isColliding = function(obj1, obj2){
 /*
 * Create an object to hold player data.
 */
-var Player = function(id, username, start){
-	
-	var self = {
-		xPos: start.x,
-		yPos: start.y,
-		width: 100,
-		height: 100,
-		speedX: 0,
-		speedY: 0,
-		readyL: 0,
-		readyR: 0,
-	};
 
-	self.releaseJump = function(dir){
-		self.speedX += self.readyR;
-		self.speedX -= self.readyL;
-
-		self.speedY = 2*(self.readyL + self.readyR);
-		
-		self.readyR = 0;
-		self.readyL = 0;
-	}
-
-	self.updatePlayer = function(){
-
-		
-		if(self.readyL > 0){
-			self.readyL += 0.5;
-		}
-		if(self.readyR > 0){
-			self.readyR += 0.5;
-		}
-
-		
-		self.xPos += self.speedX;
-		self.yPos += self.speedY;
-		
-		
-		if(self.yPos > 0){
-			self.speedY = self.speedY - 0.5;
-		}else{
-			self.speedX = 0;
-			self.speedY = 0;
-			self.yPos = 0;
-		}
-	
-		var selfPack = {
-			x:self.xPos,
-			y:self.yPos,
-		}
-		
-		return selfPack;
-	}
-	
-	self.jumpIn = function(dir){
-		if(dir == 'right'){
-			self.readyR = 1;
-		}else{
-			self.readyL = 1;
-		}
-	}
-	
-	Player.list[id] = self;
-	
-	return self;
-}
 
 Player.list = {};
 
@@ -208,7 +144,8 @@ Player.Update = function(){
 }
 
 Player.onConnect = function(socket){
-	var player = Player(socket.id, "No Name", {x:10, y:200}); 
+	var player = new Player(socket.id, "No Name", {x:10, y:200}); 
+	
 	
 	socket.on('jumpStart', function(data){
 		player.jumpIn(data.direction);
@@ -218,8 +155,6 @@ Player.onConnect = function(socket){
 		player.releaseJump(data.direction);
 	});
 }
-
-
 
 
 //Every so often, update the board

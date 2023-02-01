@@ -25,7 +25,7 @@ socket.on('update', function(data){
 	
 		
 		for(i in data.players){
-		var player = data.players[i];
+		var player = new data.players[i];
 			ctx.drawImage(img, player.x, 500-player.y - 100, 100, 100);
 		}
 		
