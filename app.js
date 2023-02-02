@@ -147,6 +147,7 @@ Player.Update = function(){
 Player.onConnect = function(socket){
 	var player = new Player(socket.id, "No Name", {x:10, y:200}); 
 	
+	Player.list[socket.id] = player;
 	
 	socket.on('jumpStart', function(data){
 		player.jumpIn(data.direction);
