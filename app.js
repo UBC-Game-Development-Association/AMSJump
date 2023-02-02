@@ -75,7 +75,8 @@ var Board = function(){
 
 /*
 * Lets update the board (ie make it go up, track its state)
-* Returns a pack with game info.
+* Returns a pack with game in
+fo.
 */
 Board.Update = function(){
 	var boardPack = [];
