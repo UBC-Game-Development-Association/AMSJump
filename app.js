@@ -125,10 +125,7 @@ Board.isColliding = function(obj1, obj2){
 * Create an object to hold player data.
 */
 
-
 Player.list = {};
-
-
 /*
 * Update all players here
 * Returns a pack of all player info.
@@ -146,6 +143,7 @@ Player.Update = function(){
 Player.onConnect = function(socket){
 	var player = new Player(socket.id, "No Name", {x:10, y:200}); 
 	
+	Player.list[socket.id] = player;
 	
 	socket.on('jumpStart', function(data){
 		player.jumpIn(data.direction);
@@ -164,7 +162,7 @@ setInterval(function(){
 		players: Player.Update(),
 		obstacles: Board.Update(),
 	};
-	
+	console.log(pack);
 	for(var i in SOCKET_LIST){
 		
         

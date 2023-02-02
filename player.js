@@ -8,7 +8,6 @@ module.exports = class Player{
         this.speedY = 0;
         this.readyL = 0;
         this.readyR = 0;
-        Player.list = {};
     }
 
     releaseJump (dir) {
