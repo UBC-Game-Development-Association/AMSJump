@@ -15,9 +15,11 @@ var ctx = c.getContext("2d");
 
 
 var img = new Image();
+var img2 = new Image();
 var jumpBar = new Image();
 
 img.src = "/client/Char.png";
+img2.src = "/client/block.png";
 jumpBar.src = "/client/bigJump.png";
 
 
@@ -27,17 +29,23 @@ socket.on('update', function(data){
 	
 		
 		for(i in data.players){
-		var player = data.players[i];
-		ctx.drawImage(img, player.x, 500-player.y - 100, 100, 100);
-		if(player.readyR > 0){
-			ctx.drawImage(jumpBar, player.x + 80, 380 - player.y - (player.readyR * 5), 10, player.readyR * 5);
+			var player = data.players[i];
+			ctx.drawImage(img, player.x, 500-player.y - 100, 100, 100);
+			
+			if(player.readyR > 0){
+				ctx.drawImage(jumpBar, player.x + 80, 380 - player.y - (player.readyR * 5), 10, player.readyR * 5);
 			}
-		if(player.readyL > 0){
-			ctx.drawImage(jumpBar, player.x, 380 - player.y - (player.readyL * 5), 10, player.readyL * 5);
+			if(player.readyL > 0){
+				ctx.drawImage(jumpBar, player.x, 380 - player.y - (player.readyL * 5), 10, player.readyL * 5);
 			}
 		}
 		
-	
+		for(i in data.obstacles){
+			var obstacle = data.obstacles[i];
+			
+			ctx.drawImage(img2, obstacle.x+50, obstacle.y - 100, 100, 100);
+		
+		}
    
     }); 
 
