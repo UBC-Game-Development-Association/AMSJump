@@ -19,7 +19,7 @@ var img2 = new Image();
 var jumpBar = new Image();
 
 img.src = "/client/Char.png";
-img2.src = "/client/block.png";
+img2.src = "/client/Block.png";
 jumpBar.src = "/client/bigJump.png";
 
 
@@ -42,8 +42,8 @@ socket.on('update', function(data){
 		
 		for(i in data.obstacles){
 			var obstacle = data.obstacles[i];
-			
-			ctx.drawImage(img2, obstacle.x+50, obstacle.y - 100, 100, 100);
+			console.log(data.obstacles[i]);
+			ctx.drawImage(img2, obstacle.xPos, 500 - obstacle.yPos - 100, 100, 100);
 		
 		}
    
