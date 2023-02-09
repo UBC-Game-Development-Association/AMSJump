@@ -7,6 +7,9 @@ var fs = require('fs');
 var Player = require('./player.js');
 var Queue = require('./queue.js');
 
+var Obstacle = require('./Obstacle.js');
+var Board = require('./Board.js');
+
 //Send the user the 'index.html' file, to let them interact
 app.get('/',function(req, res){
 	res.sendFile(__dirname + '/index.html');
@@ -25,17 +28,15 @@ serv.listen(8012);
 console.log("Server started.");
 
 var que = new Queue();
-console.log(que.isEmpty);
-que.push(1);
-console.log(que.getSize);
-console.log(que.pop());
-console.log(que.getSize);
 
 //A list to track all of the sockets
 var SOCKET_LIST = {};
 
 //Creating the io object (to help us talk with the sockets) web sockets, fast connection 
 var io = require('socket.io')(serv,{});
+
+
+
 
 //Setting up what to do when someone connects
 io.sockets.on('connection', function(socket){
@@ -66,60 +67,8 @@ io.sockets.on('connection', function(socket){
     
 });
 
-/*
-* Create a new object to hold all of the game state data.
-*/
-var Board = function(){
-	var self = {};
-	
-}
-
-/*
-* Lets update the board (ie make it go up, track its state)
-* Returns a pack with game in
-fo.
-*/
-Board.Update = function(){
-	var boardPack = [];
-	
-	for(var i in Board.obstList){
-		boardPack.push();
-	}
-	
-	return boardPack;
-}
-
-Board.obstList = {};
 
 
-var Obstacle = function(data){
-	
-	var self = {
-		xPos: data.x,
-		yPos: data.y,
-		width: data.width,
-		height: data.height,
-	}
-	self.getData = function(){
-		return {xPos:self.xPos, yPos:self.yPos, width:self.width, height:self.height};
-	}
-}
-
-
-//If obj1 is above 2, returns 'd', if 2 is above 1 'u', if they dont collide return n.
-Board.isColliding = function(obj1, obj2){
-	if((obj1.y + obj1.height > obj2.y) && (obj1.y < obj2.y + obj2.height)){
-		if((obj1.x + obj1.width > obj2.x) && (obj1.x < obj2.x + obj2.width)){
-			if(obj1.y > obj2.y){
-				return 'd';
-			}
-			else{
-				return 'u';
-			}
-		}
-	}
-	return 'n';
-}
 
 
 /*
@@ -163,7 +112,6 @@ setInterval(function(){
 		players: Player.Update(),
 		obstacles: Board.Update(),
 	};
-	console.log(pack);
 	for(var i in SOCKET_LIST){
 		
         
