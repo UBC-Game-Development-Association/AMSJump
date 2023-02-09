@@ -126,10 +126,7 @@ Board.isColliding = function(obj1, obj2){
 * Create an object to hold player data.
 */
 
-
 Player.list = {};
-
-
 /*
 * Update all players here
 * Returns a pack of all player info.
@@ -166,7 +163,7 @@ setInterval(function(){
 		players: Player.Update(),
 		obstacles: Board.Update(),
 	};
-	
+	console.log(pack);
 	for(var i in SOCKET_LIST){
 		
         
