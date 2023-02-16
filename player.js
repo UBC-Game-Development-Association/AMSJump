@@ -1,4 +1,8 @@
 module.exports = class Player{
+
+    static leftBound = 0;
+    static rightBound = 500;
+
     constructor(id, username, start) {
         this.xPos = start.x;
         this.yPos = start.y;
@@ -21,6 +25,7 @@ module.exports = class Player{
     }
 
     updatePlayer() {
+
         if((this.readyL>0) && (this.readyL<8.5)){
             this.readyL = this.readyL + (0.6/(this.readyL*2));
         }
@@ -31,7 +36,17 @@ module.exports = class Player{
 		this.xPos += this.speedX;
 		this.yPos += this.speedY;
 		
-		
+        //checking for leftBound
+		if(this.xPos < Player.leftBound){
+            this.speedX = 0;
+            this.xPos = Player.leftBound;
+        }
+        //checking for rightBound
+        if(this.xPos > Player.rightBound){
+            this.speedX = 0;
+            this.xPos = Player.rightBound;
+        }
+
 		if(this.yPos > 0){
 			this.speedY = this.speedY - 0.5;
 		}else{
@@ -39,7 +54,8 @@ module.exports = class Player{
 			this.speedY = 0;
 			this.yPos = 0;
 		}
-	
+
+        // initializing the pack for returning
 		var selfPack = {
 			x:this.xPos,
 			y:this.yPos,
