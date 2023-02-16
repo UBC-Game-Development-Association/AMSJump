@@ -19,18 +19,20 @@ module.exports = class Player{
             this.speedX += this.readyR;
             this.speedX -= this.readyL;
             this.speedY = 2*(this.readyL + this.readyR);
-            this.readyL = 0;
-            this.readyR = 0;
         }
+        this.readyL = 0;
+        this.readyR = 0;
     }
 
     updatePlayer() {
 
         if((this.readyL>0) && (this.readyL<8.5)){
             this.readyL = this.readyL + (0.6/(this.readyL*2));
+            console.log(this.readyL);
         }
 		if((this.readyR>0) && (this.readyR<8.5)){
             this.readyR = this.readyR + (0.6/(this.readyR*2));
+            console.log(this.readyR);
         }
 
 		this.xPos += this.speedX;
