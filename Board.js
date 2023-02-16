@@ -6,7 +6,6 @@ var Board = function(){
 	
 }
 
-
 Board.obstList = {};
 
 /*
